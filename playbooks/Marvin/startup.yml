@@ -1,0 +1,25 @@
+---
+- name: Manage startup applications
+  hosts: localhost
+  tasks:
+
+    - name: Ensure the .config/autostart directory exists
+      file:
+        path: ~/.config/autostart
+        state: directory
+      become: false
+      
+    - name: Create a .desktop file for Brave
+      copy:
+        dest: ~/.config/autostart/brave.desktop
+        content: |
+          [Desktop Entry]
+          Type=Application
+          Exec=brave
+          Hidden=false
+          NoDisplay=false
+          X-GNOME-Autostart-enabled=true
+          Name=Brave
+          Comment=browser
+      become: false
+...

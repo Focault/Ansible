@@ -1,0 +1,26 @@
+---
+- name: Set GNOME keyboard shortcuts
+  hosts: localhost
+  tasks:
+
+    - name: Add custom keybindings for terminal and close window
+      command: >
+        gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+        "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+    - name: Set the name for terminal shortcut
+      command: >
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Launch Terminal'
+
+    - name: Set the command for terminal shortcut
+      command: >
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
+
+    - name: Set the keybinding for terminal shortcut (Super + Return)
+      command: >
+        gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
+
+    - name: Bind Left Ctrl + Q to the window close action
+      command: >
+        gsettings set org.gnome.desktop.wm.keybindings close "['<Control>q', '<Alt>F4']"
+...

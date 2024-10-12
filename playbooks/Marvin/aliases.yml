@@ -1,0 +1,21 @@
+---
+- name: Configure permanent aliases in .bashrc
+  hosts: localhost
+  become: false  # No need for sudo to modify a user's shell config (unless changing system-wide files)
+  tasks:
+
+    - name: Ensure the alias for ll is present in .bashrc
+      lineinfile:
+        path: ~/.bashrc  # The file to be modified
+        regexp: '^alias ll='  # Regular expression to match the existing line
+        line: "alias ll='ls -alF'"  # The alias line to insert or update
+        state: present  # Ensure the line is present
+
+    - name: add alias for update and upgrade
+      lineinfile:
+        path: ~/.bashrc  # The file to be modified
+        regexp: '^alias up='  # Regular expression to match the existing line
+        line: "alias up='sudo apt update && sudo apt upgrade -y'"  # The alias line to insert or update
+        state: present  # Ensure the line is present
+...
+

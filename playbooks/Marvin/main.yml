@@ -1,0 +1,8 @@
+---
+- import_playbook: installer.yml
+- import_playbook: aliases.yml
+- import_playbook: shortcuts.yml
+- import_playbook: terminal.yml
+- import_playbook: startup.yml
+...
+

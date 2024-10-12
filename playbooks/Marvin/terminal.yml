@@ -1,0 +1,24 @@
+---
+- name: Set Fish as the default shell
+  hosts: localhost
+  tasks:
+
+    - name: Ensure Fish is installed
+      apt:
+        name: fish
+        state: present
+      become: true
+
+    - name: Ensure Fish is in the list of valid shells
+      lineinfile:
+        path: /etc/shells
+        line: /usr/bin/fish
+        state: present
+      become: true
+
+    - name: Change default shell to Fish for the current user
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        shell: /usr/bin/fish
+      become: true
+...

@@ -1,0 +1,55 @@
+---
+- name: Setup Ubuntu Workstation
+  hosts: localhost  # Define the target host as localhost
+  become: true  # Run tasks with sudo permissions
+  tasks:
+  
+# apts:  
+  
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+        
+    - name: Install Snapd package
+      apt:
+        name: snapd
+        state: present
+
+    - name: Install essential packages
+      apt:
+        name:
+          - git
+          - curl
+          - wget
+          - fish
+          - snap
+          - libglib2.0-bin
+          - gnome-shell-extension-appindicator
+          - gnome-shell
+          - gnome-shell-extension-prefs
+          - unzip
+          - make
+          - gettext
+          - chrome-gnome-shell
+          - gnome-tweaks
+        state: present
+        
+# Snaps:
+
+    - name: Install VS Code using snap
+      snap:
+        name: code  # Snap package name for VS Code is "code"
+        state: present
+        classic: yes  # Use this to allow installation of classic packages (VS Code requires this)
+
+    - name: Install VLC using snap
+      snap:
+        name: vlc
+        state: present
+
+    - name: Install Brave browser
+      snap:
+        name: brave
+        state: present
+...
