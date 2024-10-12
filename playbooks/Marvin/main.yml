@@ -4,5 +4,6 @@
 - import_playbook: shortcuts.yml
 - import_playbook: terminal.yml
 - import_playbook: startup.yml
+- import_playbook: background.yml
 ...
 

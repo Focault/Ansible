@@ -1,0 +1,10 @@
+---
+- name: Change Desktop Background
+  hosts: all
+  tasks:
+    - name: Set GNOME desktop background
+      command: >
+        gsettings set org.gnome.desktop.background picture-uri "file:///home/focault/ansible-setup/playbooks/Marvin/wallpaper.jpg"
+      become: yes
+      become_user: focault  # Replace with the actual user
+...
